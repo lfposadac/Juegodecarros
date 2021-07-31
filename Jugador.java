@@ -1,33 +1,11 @@
 
 /**
- * Write a description of class Jugador here.
+ * Clase jugador donde se crea el objeto jugador
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Luis Fernando Posada Cano <lfposadac@eafit.edu.co>) 
+ * @version (01/08/2021)
  */
 public class Jugador
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Jugador
-     */
-    public Jugador()
-    {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
+    
 }

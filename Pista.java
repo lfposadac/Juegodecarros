@@ -1,33 +1,25 @@
 
 /**
- * Write a description of class Pista here.
+  * Clase pista donde se crea el objeto pista.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Luis Fernando Posada Cano <lfposadac@eafit.edu.co>) 
+ * @version (01/08/2021)
  */
-public class Pista
-{
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Pista
-     */
-    public Pista()
-    {
-        // initialise instance variables
-        x = 0;
+public class Pista implements Values  {
+    public Pista(Integer km, Integer numDeCarriles){
+        this.km = km;
+        this.numDeCarriles = numDeCarriles;
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
+    private Integer km;
+    private Integer numDeCarriles;
+    /*Override una característica que permite que una subclase o clase
+     * secundaria proporcione una implementación específica de un método
+     * que ya está provisto por una de sus superclases o clases principales.
+     */ 
+    @Override
+    public Integer km() { return km; } 
+    // Integer
+    @Override 
+    public Integer numDeCarriles() { return numDeCarriles; }
+    
 }
