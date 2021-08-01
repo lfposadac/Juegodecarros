@@ -25,7 +25,7 @@ public class Carril
     public void llegadaAMeta(){
         if(posicionAct() >= posicionMeta()){ movFinal = true; }}
 
-    public void movCar(Posicion posicion, Interger cantidad){
+    public void movCar(Posicion posicion, Integer cantidad){
         this.posicion = posicion;
         posicion.setActual(posicion.actual()+ cantidad);
         llegadaAMeta();
@@ -37,7 +37,7 @@ public class Carril
     
     public Integer posicionAct() { return posicion.actual(); }
     
-    public Integer posionMeta() { return posicion.meta(); }
+    public Integer posicionMeta() { return posicion.meta(); }
    
     public Integer meters(){ return meters; }
         
