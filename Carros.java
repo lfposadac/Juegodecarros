@@ -1,4 +1,3 @@
-
 /**
  * Los creación de los carros. 
  * 
@@ -14,22 +13,37 @@ import java.util.*;
 public class Carros
 {
    public GameId gameId;
-   public Driver driver;
+   public Conductor conductor;
    public Color color;
    public Integer distancia;
-   public final Map <CarId, Driver> carros = new HashMap<> ();
+   public final Map <CarId, Conductor> carros = new HashMap<> ();
    
    public Carros() {}
 
-   public Carros(GameId gameId, Driver driver,Color color, Integer distancia){
+   public Carros(GameId gameId, Conductor conductor,Color color, Integer distancia){
        this.gameId = gameId;
-       this.driver = driver;
+       this.conductor = conductor;
        this.color = color;
        this.distancia = distancia;
+    }
         
-       void assignDriver(CarId carId, Driver driver){ carros.put(carId, driver);}
+   public void assignDriver(CarId carId, Conductor conductor){ carros.put(carId, conductor);}
+   
+   public Map <CarId, Conductor> carros(){return carros; }
+   
+   public void setDistancia(Integer distancia){ this.distancia = distancia; }
+   
+   public Integer numCarros(){ return carros.size(); }
+   
+   public Color color(){ return color;}
+   
+   public Integer distancia() {return distancia;}
+   
+   public Conductor conductor() { return conductor; }
        
    }
+       
+
    
    
    

@@ -1,33 +1,21 @@
 
 /**
- * Write a description of class Conductor here.
+ * Creación del piloto o del conductor de los carros. 
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Luis Fernando posada Cano) 
+ * @version (01/08/2021)
  */
 public class Conductor
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Conductor
-     */
-    public Conductor()
-    {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public String nombre;
+    
+    public Conductor() { }
+    
+    public Conductor(String nombre){ this.nombre = nombre; }
+    
+    public String nombre() { return nombre; }
+    
+    public Integer girarDado() {
+        int dadoRandom = (int) (math.random)
     }
 }
