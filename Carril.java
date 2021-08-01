@@ -1,13 +1,45 @@
 
 /**
- * Write a description of class Carril here.
+ * La clase carril es la creación del carrril dentro del juego.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Luis Fernando Posada Cano) 
+ * @version (01/08/2021)
  */
+import java.util.*;
 public class Carril
 {
     public boolean movFinal;
-    public CarId CarId;
+    public CarId carId;
+    public GameId gameId;
+    public Posicion posicion;
+    public Integer meters;
     
-}
+    public Carril (boolean movFinal, CarId carId, GameId gameId, Posicion posicion, Integer meters){
+     this.movFinal = movFinal;
+     this.carId = carId;
+     this.gameId = gameId;
+     this.posicion = posicion;
+     this.meters = meters;
+    }
+    
+    public void llegadaAMeta(){
+        if(posicionAct() >= posicionMeta()){ movFinal = true; }}
+
+    public void movCar(Posicion posicion, Interger cantidad){
+        this.posicion = posicion;
+        posicion.setActual(posicion.actual()+ cantidad);
+        llegadaAMeta();
+    }
+    
+    public Boolean movFinal() { return movFinal;}
+    
+    public Posicion posicion() { return posicion;}
+    
+    public Integer posicionAct() { return posicion.actual(); }
+    
+    public Integer posionMeta() { return posicion.meta(); }
+   
+    public Integer meters(){ return meters; }
+        
+    }
+

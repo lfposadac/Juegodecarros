@@ -1,16 +1,16 @@
 
 /**
- * Write a description of interface Values here.
+ * Interface donde tenemos los valores de la pista principalmente
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Luis Fernando Posada Cano <lfposadac@eafit.edu.co>) 
+ * @version (01/08/2021)
  */
 
 public interface Values
 {
-    /*Integer es la clase del lenguaje Java que 
+ /*Integer es la clase del lenguaje Java que 
     nos permite convertir un tipo básico int en un objeto.
-    */
+ */
     public Integer km();
     public Integer numDeCarriles();
 }
