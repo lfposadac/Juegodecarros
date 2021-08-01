@@ -1,33 +1,39 @@
 
 /**
- * Write a description of class Podio here.
+ * Clase donde se hará el podio
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Luis Fernando Posada Cano) 
+ * @version (01/08/2021)
  */
-public class Podio
+public class Podio implements Seguimiento
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Podio
-     */
-    public Podio()
-    {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+  public Jugador primerPuesto;
+  public Jugador segundoPuesto;
+  public Jugador tercerPuesto;
+  
+  public Podio(){}
+  
+  public void assPrimerPuesto(Jugador jugador) { primerPuesto = jugador; }
+  
+  public void assSegundoPuesto(Jugador jugador) { segundoPuesto = jugador; }
+  
+  public void assTercerPuesto(Jugador jugador) { tercerPuesto = jugador; }
+  
+  @Override 
+  public Jugador primerPuesto() {  return primerPuesto; }
+  
+  @Override 
+  public Jugador segundoPuesto() { return segundoPuesto; }
+  
+  @Override
+  public Jugador tercerPuesto(){ return tercerPuesto; }
+  
+  @Override
+  public Boolean copado(){ 
+      Boolean ocupado = false;
+      if(primerPuesto != null && segundoPuesto != null && tercerPuesto != null ){
+          ocupado = true;
+      }
+      return ocupado;
     }
 }

@@ -16,6 +16,7 @@ public class Conductor
     public String nombre() { return nombre; }
     
     public Integer girarDado() {
-        int dadoRandom = (int) (math.random)
+        int dadoRandom = (int) (Math.random() * 6 + 1);
+        return dadoRandom;
     }
 }
