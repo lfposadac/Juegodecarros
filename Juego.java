@@ -58,15 +58,133 @@ public class Juego
         }
     }
     
+    //Asignamos posiciones
     public void assPrimerPuesto(PlayerId playerId){
         podio.assPrimerPuesto(jugadores.get(playerId));
         System.out.println("||||||" + jugadores.get(playerId).name().getName() + "Primer puesto"  + "||||||");
-        
     }
-        }
-    }
-            
-        }
     
+    public void assSegundoPuesto(PlayerId playerId){
+        podio.assSegundoPuesto(jugadores.get(playerId));
+        System.out.println("||||||" + jugadores.get(playerId).name().getName() + "Segundo puesto"  + "||||||");
     }
-}
+    
+    public void assTercerPuesto(PlayerId playerId){
+        podio.assTercerPuesto(jugadores.get(playerId));
+        System.out.println("||||||" + jugadores.get(playerId).name().getName() + "Tercer puesto"  + "||||||");
+    }
+    
+    public Boolean finishCar(String name) {
+        boolean carFinish = false;
+        if(podio.tercerPuesto() == jugadores.get(jugadorId(name)) || podio.segundoPuesto() == jugadores.get(jugadorId(name)) || podio.primerPuesto == jugadores.get(jugadorId(name))){
+            carFinish = true;
+        }
+        return carFinish;
+    }
+    
+    public void mostrarPodio() {
+        System.out.pritnln("|||||| Podio |||||| ");
+        System.out.pritnln("Primer puesto" + podio.primerPuesto().name().getName());
+        System.out.pritnln("Segundo puesto" + podio.segundoPuesto().name().getName());
+        System.out.pritnln("Tercer puesto" + podio.tercerPuesto().name().getName());
+    }
+    
+    public void repetirJuego() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Jugar otra vez S|N");
+        while (!in.hasNext("[sSnN]")) {
+            System.out.println("Escribe S, s o N, n");
+            in.next();
+        }
+        String jugarOtro = in.next();
+        if(jugarOtro.equals("S") || jugarOtro.equals("s")) {
+            carrosEnJuego.clear();
+            carrilesEnJuego.clear();
+            Podio podioNuevo = new Podio();
+            podio = podioNuevo;
+            startGame();
+        }
+    }
+    
+    public void startGame() {
+        //Iniciamos con la identificación
+        UUID id;
+        id = UUID.randomUUID();
+        GameId gameId = new GameId(id);
+        
+        //Pasamos a la selección de la pista
+        Scanner in = new Scanner(System.in);
+        System.out.println("Elige la pista en la que prefieres jugar: ");
+        System.out.println("Pistas: ");
+        int counter = 1;
+        for(Pista p: pistas) {
+            System.out.println(counter + "."+ "Kilometros: " + "Número de carriles: " + p.numDeCarriles());
+            counter++;
+        }
+        while(!in.hasNextInt())in.next();
+        int pistaSeleccionada = in.nextInt();
+        
+        //Carros en juego y carriles
+        carros.carros().forEach((key,value) -> {
+            Carros carrosJuego = new Carros(value, 0, Color.yellow, gameId);
+            carrosEnJuego.add(carrosJuego);
+            
+            int kmToMeters = pistas.get(pistaSeleccionada - 1).Km() * 1000;
+            Posicion posicion = new Posicion(0, kmToMeters);
+            Carril carriles = new Carril(key, gameId, posicion, kmToMeters, false);
+            carrilesEnJuego.add(carriles);
+        });
+        
+        //Start Game
+        jugando = true;
+        Conductor conductor = new Conductor();
+        System.out.println("|||||| Inicio ||||||");
+        
+        //El juego solo se terminará si se completa el podio o si está "copado"
+        while(jugando) {
+            int contador = 0;
+            System.out.println("|||||| Avance ||||||"+ "|||||| Meta: "+ carrilesEnJuego.get(contador).meters() + "metros");
+            for (Carros carros: carrosEnjuego) {
+                if(!finishCar(carros.conductor().nombre())) {
+                    int mover = conductor.girarDado() * 100;
+                    carros.setDistancia(carros.distancia() + mover);
+                    carrilesEnJuego.get(contador).moverCarro(carrilesEnJuego.get(contador).posicion(), mover);
+                    System.out.println(carros.conductor().name() + "." + "mover " + mover + "a nueva posición " + carros.distancia());
+                    
+                    if (carrilesEnJuego.get(contador).movFinal()){
+                        if (podio.primerPuesto() == null) {
+                            assPrimerPuesto(playerId(carros.conductor().name()));
+                        } else if (podio.segundoPuesto() == null) {
+                            assSegundoPuesto(playerId(carros.conductor().name()));
+                        } else if (podio.tercerPuesto() == null) {
+                            assTercerPuesto(playerId(carros.conductor().name()));
+                        }
+                    }
+                }
+                contador++;
+            }
+            if(podio.copado()) {
+                break;
+            }
+        }
+        mostrarPodio();
+        //guardarRegistrpBD();
+        repetirJuego();
+    }
+    
+    public Map<PlayerId, Jugador> jugadores() { return jugadores; }
+    
+    public Boolean jugando() { return jugando; }
+    
+    // Se retorna el identificador del jugador
+    
+    public PlayerId playerId(String name) {
+        PlayerId lookId = null;
+        for(PlayerId keys : jugadores.keySet()) {
+            if(jugadores.get(keys).name().getName().equals(name)) { lookId = keys; }
+        }
+            return lookId;
+        }
+        }
+  
+  

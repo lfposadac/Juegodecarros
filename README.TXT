@@ -8,5 +8,5 @@ PROJECT TITLE: JUEGO DE CARROS POR CONSOLA
 PURPOSE OF PROJECT: Demostrar los conocimentos adquiridos.
 VERSION or DATE: 1/08/2021
 HOW TO START THIS PROJECT: Apartir del main
-AUTHORS:Luis Fernando Posada Cano
+AUTHORS:Luis Fernando Posada Cano(Aclaración: Hay varias estructuras que no sabía y me ayude de https://stackoverflow.com/)
 USER INSTRUCTIONS: Seguir las instrucciones dictadas por el programa 
