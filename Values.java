@@ -2,7 +2,7 @@
 /**
  * Interface donde tenemos los valores de la pista principalmente
  * 
- * @author (Luis Fernando Posada Cano <lfposadac@eafit.edu.co>) 
+ * @author (Luis Fernando Posada Cano) 
  * @version (01/08/2021)
  */
 

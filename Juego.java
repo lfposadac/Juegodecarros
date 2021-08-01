@@ -33,7 +33,7 @@ public class Juego
     public void createConductor(Name name){
         UUID id;
         Scanner in = new Scanner(System.in);
-        System.out.println("El jugador: " + name.getName()+ "será asignado a conductor" + "S/N");
+        System.out.println("El jugador: " + name.getName()+ " será asignado a conductor " + "Si/No");
         while(!in.hasNext("[sSnN]")){
             System.out.println("Su respuesta deber ser en terminos de S, s o N, n");
             in.next();
@@ -76,17 +76,17 @@ public class Juego
     
     public Boolean finishCar(String name) {
         boolean carFinish = false;
-        if(podio.tercerPuesto() == jugadores.get(jugadorId(name)) || podio.segundoPuesto() == jugadores.get(jugadorId(name)) || podio.primerPuesto == jugadores.get(jugadorId(name))){
+        if(podio.tercerPuesto() == jugadores.get(playerId(name)) || podio.segundoPuesto() == jugadores.get(playerId(name)) || podio.primerPuesto == jugadores.get(playerId(name))){
             carFinish = true;
         }
         return carFinish;
     }
     
     public void mostrarPodio() {
-        System.out.pritnln("|||||| Podio |||||| ");
-        System.out.pritnln("Primer puesto" + podio.primerPuesto().name().getName());
-        System.out.pritnln("Segundo puesto" + podio.segundoPuesto().name().getName());
-        System.out.pritnln("Tercer puesto" + podio.tercerPuesto().name().getName());
+        System.out.println("|||||| Podio |||||| ");
+        System.out.println("Primer puesto" + podio.primerPuesto().name().getName());
+        System.out.println("Segundo puesto" + podio.segundoPuesto().name().getName());
+        System.out.println("Tercer puesto" + podio.tercerPuesto().name().getName());
     }
     
     public void repetirJuego() {
@@ -98,7 +98,7 @@ public class Juego
         }
         String jugarOtro = in.next();
         if(jugarOtro.equals("S") || jugarOtro.equals("s")) {
-            carrosEnJuego.clear();
+            carrosEnPista.clear();
             carrilesEnJuego.clear();
             Podio podioNuevo = new Podio();
             podio = podioNuevo;
@@ -118,7 +118,7 @@ public class Juego
         System.out.println("Pistas: ");
         int counter = 1;
         for(Pista p: pistas) {
-            System.out.println(counter + "."+ "Kilometros: " + "Número de carriles: " + p.numDeCarriles());
+            System.out.println(counter + "."+ "Kilometros: " + p.km() + "Número de carriles: " + p.numDeCarriles());
             counter++;
         }
         while(!in.hasNextInt())in.next();
@@ -126,12 +126,12 @@ public class Juego
         
         //Carros en juego y carriles
         carros.carros().forEach((key,value) -> {
-            Carros carrosJuego = new Carros(value, 0, Color.yellow, gameId);
-            carrosEnJuego.add(carrosJuego);
+            Carros carrosJuego = new Carros(gameId, value, Color.blue, 0);
+            carrosEnPista.add(carrosJuego);
             
-            int kmToMeters = pistas.get(pistaSeleccionada - 1).Km() * 1000;
+            int kmToMeters = pistas.get(pistaSeleccionada - 1).km() * 1000;
             Posicion posicion = new Posicion(0, kmToMeters);
-            Carril carriles = new Carril(key, gameId, posicion, kmToMeters, false);
+            Carril carriles = new Carril(false, key,  gameId, posicion, kmToMeters);
             carrilesEnJuego.add(carriles);
         });
         
@@ -144,11 +144,11 @@ public class Juego
         while(jugando) {
             int contador = 0;
             System.out.println("|||||| Avance ||||||"+ "|||||| Meta: "+ carrilesEnJuego.get(contador).meters() + "metros");
-            for (Carros carros: carrosEnjuego) {
-                if(!finishCar(carros.conductor().nombre())) {
+            for (Carros carros: carrosEnPista) {
+                if(!finishCar(carros.conductor().name())) {
                     int mover = conductor.girarDado() * 100;
                     carros.setDistancia(carros.distancia() + mover);
-                    carrilesEnJuego.get(contador).moverCarro(carrilesEnJuego.get(contador).posicion(), mover);
+                    carrilesEnJuego.get(contador).movCar(carrilesEnJuego.get(contador).posicion(), mover);
                     System.out.println(carros.conductor().name() + "." + "mover " + mover + "a nueva posición " + carros.distancia());
                     
                     if (carrilesEnJuego.get(contador).movFinal()){

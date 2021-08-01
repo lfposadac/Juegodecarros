@@ -7,13 +7,13 @@
  */
 public class Conductor
 {
-    public String nombre;
+    public String name;
     
     public Conductor() { }
     
-    public Conductor(String nombre){ this.nombre = nombre; }
+    public Conductor(String name){ this.name = name; }
     
-    public String nombre() { return nombre; }
+    public String name() { return name; }
     
     public Integer girarDado() {
         int dadoRandom = (int) (Math.random() * 6 + 1);

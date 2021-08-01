@@ -26,12 +26,12 @@ public class EjecutableMain
         for(int i = 0; i< jugadoresTotales; i++) {
             id = UUID.randomUUID();
             PlayerId playerId = new PlayerId(id);
-            nombreJugador = "jugador" + (i + 1);
-            Name name = new Name(nombreJugador);
-            newGame.crearJugador(playerId, name, Color.blue);
+            nameJugador = "jugador" + (i + 1);
+            Name name = new Name(nameJugador);
+            newGame.registroJugador(playerId, name, Color.blue);
         }
         
-        newGame.crearPistas();
+        newGame.createPistas();
         
         newGame.startGame();
         
